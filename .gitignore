@@ -9,9 +9,12 @@
 !/cfg/
 
 /src/**/*
+!/src/JLJl/
+!/src/JLJl/**/*/
+!/src/JLJl/**/*.ipynb
 !/src/JLPy/
 !/src/JLPy/**/*/
-!/src/jlpy/**/*.py
+!/src/JLPy/**/*.py
 
 /doc/**/*
 !/doc/README.rst

@@ -4,43 +4,22 @@
 !/README.md
 !/.readthedocs.yaml
 !/requirements.txt
-!/src/
 !/doc/
-!/cfg/
-
-/src/**/*
-!/src/JLJl/
-!/src/JLJl/**/*/
-!/src/JLJl/**/*.ipynb
-!/src/JLPy/
-!/src/JLPy/**/*/
-!/src/JLPy/**/*.py
+!/src/
 
 /doc/**/*
 !/doc/README.rst
 
-/cfg/**/*
-!/cfg/conf.py
-!/cfg/index.rst
+/src/**/*
+!/src/**/*/
+!/src/conf.py
+!/src/index.rst
+!/src/*/**/*.rst
+!/src/nps/JLPy/**/*.py
+!/src/jpl/*/**/*.ipynb
 
-!/cfg/_templates/
-!/cfg/_templates/**/*/
-!/cfg/_templates/**/*.rst
+/src/nps/**/*.rst
+!/src/nps/index.rst
 
-!/cfg/_static/
-!/cfg/_static/**/*/
-!/cfg/_static/**/*.rst
-
-!/cfg/userguide/
-!/cfg/userguide/**/*/
-!/cfg/userguide/**/*.rst
-
-!/cfg/changelog/
-!/cfg/changelog/**/*/
-!/cfg/changelog/**/*.rst
-
-!/cfg/reference/
-!/cfg/reference/**/*/
-!/cfg/reference/**/*.rst
-
-/cfg/reference/_*/
+/src/pns/_*/
+/src/jpl/**/.ipynb_checkpoints/

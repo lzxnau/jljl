@@ -2,13 +2,14 @@
 project = 'JLDP'
 copyright = '2023, JLDP'
 author = 'JLDP'
-release = '2023.10.24'
-version = '2023.10.24.1'
+release = '2023.10.25'
+version = '2023.10.25.2'
 
 # -- General configuration ---------------------------------------------------
 extensions = [
   'sphinx.ext.autodoc',
   'sphinx.ext.autosummary',
+  'sphinx_rtd_theme',
   'myst_parser',
   'nbsphinx',
   'sphinx_gallery.load_style',

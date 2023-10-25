@@ -1,2 +1,2 @@
-# JLJl Package Project hosted at Read the Docs
-[JLJl RTD Link](https://jljl.readthedocs.io)
+# JLDP Project hosted at Read the Docs
+[JLDP RTD Link](https://jldp.readthedocs.io)

@@ -10,4 +10,5 @@ Pytorch
    concept/neural-network
    concept/tensor
    concept/cv
+   example/computer-vision/image-classification/intro
 

@@ -7,6 +7,6 @@ Documentations
 ..  toctree::
     :hidden:
 
-    JLJl JPLs <jpl/index>
-    JLPy NPSs <pns/index>
+    JLJl JPL <jpl/index>
+    JLPy NPS <pns/index>
     Changelog <log/index>

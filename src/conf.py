@@ -9,13 +9,14 @@ version = '2023.10.25.2'
 extensions = [
   'sphinx.ext.autodoc',
   'sphinx.ext.autosummary',
-  'sphinxcontrib.mermaid',
   'myst_parser',
+  'sphinxcontrib.mermaid',
   'nbsphinx',
   'sphinx_gallery.load_style',
 ]
 
 templates_path = ['_templates']
+exclude_patterns = ['_build']
 pygments_style = 'lightbulb'
 
 # -- Options for HTML output -------------------------------------------------
@@ -25,3 +26,7 @@ html_theme = 'sphinx_rtd_theme'
 #  'globaltoc_includehidden': True
 # }
 html_static_path = ['_static']
+
+myst_fence_as_directive = ["mermaid"]
+
+mermaid_version = '10'

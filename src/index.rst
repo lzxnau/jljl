@@ -5,6 +5,7 @@ Documentations
     :alt: Documentation Status
 
 ..  toctree::
+    :maxdepth: 2
     :hidden:
 
     JLJl JPL <jpl/index>

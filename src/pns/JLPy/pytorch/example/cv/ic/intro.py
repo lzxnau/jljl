@@ -3,8 +3,12 @@ Introduction.
 
 This is an introduction example for Pytorch image classification.
 
-   :Authors: JLPy
-   :Version: 2023.10.26.01
+:Authors: JLPy
+:Version: 2023.10.26.01
+
+.. note::
+
+   This is a note.
 """
 
 

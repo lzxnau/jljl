@@ -9,7 +9,6 @@ version = '2023.10.25.2'
 extensions = [
   'sphinx.ext.autodoc',
   'sphinx.ext.autosummary',
-  'sphinx_rtd_theme',
   'myst_parser',
   'nbsphinx',
   'sphinx_gallery.load_style',

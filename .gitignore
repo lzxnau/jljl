@@ -17,6 +17,7 @@
 !/src/*/**/*.rst
 !/src/nps/JLPy/**/*.py
 !/src/jpl/*/**/*.ipynb
+!/src/jpl/*/**/*.md
 
 /src/nps/**/*.rst
 !/src/nps/index.rst

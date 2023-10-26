@@ -9,4 +9,5 @@ Pytorch
    concept/computer-vision
    concept/neural-network
    concept/tensor
+   concept/cv
 

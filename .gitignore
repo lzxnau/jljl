@@ -13,14 +13,10 @@
 /src/**/*
 !/src/**/*/
 !/src/conf.py
-!/src/index.rst
-!/src/*/**/*.rst
-!/src/pns/JLPy/**/*.py
+!/src/**/*.rst
+!/src/**/*.md
+!/src/pns/*/**/*.py
 !/src/jpl/*/**/*.ipynb
-!/src/jpl/*/**/*.md
 
-/src/pns/**/*.rst
-!/src/pns/index.rst
-
-/src/pns/_*/
+/src/pns/**/_*/
 /src/jpl/**/.ipynb_checkpoints/

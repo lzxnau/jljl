@@ -9,6 +9,7 @@
 
 /doc/**/*
 !/doc/README.rst
+!/doc/README.md
 
 /src/**/*
 !/src/**/*/

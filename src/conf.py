@@ -14,14 +14,13 @@ version = '2023.10.25.2'
 extensions = [
   'sphinx.ext.autodoc',
   'sphinx.ext.autosummary',
-  'myst_parser',
   'sphinxcontrib.mermaid',
+  'myst_parser',
   'nbsphinx',
   'sphinx_gallery.load_style',
 ]
 
 templates_path = ['_templates']
-exclude_patterns = ['_build']
 pygments_style = 'lightbulb'
 
 # -- Options for HTML output -------------------------------------------------
@@ -34,5 +33,5 @@ html_static_path = ['_static']
 
 myst_fence_as_directive = ["mermaid"]
 
-mermaid_cmd = "mmdc"
+# mermaid_cmd = "mmdc"
 mermaid_output_format = 'svg'

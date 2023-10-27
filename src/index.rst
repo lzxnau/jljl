@@ -11,4 +11,5 @@ Documentations
     JLJl JPL <jpl/index>
     JLPy NPS <pns/index>
     Changelog <log/index>
-    Test <mdtest>
+    MDTest <mdtest>
+    RSTest <rstest>

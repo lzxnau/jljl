@@ -10,8 +10,9 @@ build:
     nodejs: "20"
   jobs:
     pre_create_environment:
+      - npm -g update
       - npm -g i @mermaid-js/mermaid-cli
-      - which mmdc
+      - npm -g list
 
 sphinx:
   configuration: src/conf.py

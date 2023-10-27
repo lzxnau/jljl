@@ -29,4 +29,6 @@ html_static_path = ['_static']
 
 myst_fence_as_directive = ["mermaid"]
 
+mermaid_version = ''
+mermaid_cmd = "mmdc"
 mermaid_output_format = 'svg'

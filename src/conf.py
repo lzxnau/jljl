@@ -25,14 +25,8 @@ pygments_style = 'lightbulb'
 
 # -- Options for HTML output -------------------------------------------------
 html_theme = 'sphinx_rtd_theme'
-# html_theme_options = {
-#  'globaltoc_maxdepth': -1,
-#  'globaltoc_includehidden': True
-# }
 html_static_path = ['_static']
 
 myst_fence_as_directive = ["mermaid"]
 
-mermaid_version = ''
-mermaid_cmd = "mmdc"
 mermaid_output_format = 'svg'

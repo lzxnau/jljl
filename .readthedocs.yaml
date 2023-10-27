@@ -8,11 +8,11 @@ build:
   tools:
     python: "3.11"
     nodejs: "20"
+  apt_packages:
+    - libasound2
   jobs:
     pre_create_environment:
-      - npm -g update
       - npm -g i @mermaid-js/mermaid-cli
-      - npm -g list
 
 sphinx:
   configuration: src/conf.py

@@ -29,7 +29,7 @@ class ImageDataset(Dataset):
     """
     self.df = df
   
-  def getitem(self, idx: int) -> list:
+  def __getitem__(self, idx: int) -> list:
     """
     A method for a container class that supports subscription.
     

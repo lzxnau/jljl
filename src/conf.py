@@ -30,3 +30,8 @@ html_static_path = ['_static']
 myst_fence_as_directive = ["mermaid"]
 
 mermaid_output_format = 'svg'
+
+autodoc_default_options = {
+    'member-order': 'bysource',
+    'undoc-members': True,
+}

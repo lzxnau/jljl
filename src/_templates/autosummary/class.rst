@@ -7,6 +7,7 @@
 
 .. autoclass:: {{ objname }}
     :members:
+    :special-members: __init__, __getitem__
     :show-inheritance:
     :inherited-members:
 

@@ -16,6 +16,8 @@
 !/src/conf.py
 !/src/**/*.rst
 !/src/**/*.md
+!/src/_static/css/*.css
+!/src/_static/js/*.js
 !/src/pns/*/**/*.py
 !/src/jpl/*/**/*.ipynb
 

@@ -1,9 +1,8 @@
 rST Test
 ========
 
-.. mermaid::
-
-   sequenceDiagram
-      participant Alice
-      participant Bob
-      Alice->John: Hello John, how are you?
+* Test.
+* Example.
+* As a container, it must define the ``__getitem__()`` method to allow
+  container objects to be subscribed to.
+* Ok.

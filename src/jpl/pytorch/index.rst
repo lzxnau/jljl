@@ -10,5 +10,5 @@ Pytorch
    concept/neural-network
    concept/tensor
    concept/cv
+   framework/data-loading-pipeline
    example/computer-vision/image-classification/intro
-

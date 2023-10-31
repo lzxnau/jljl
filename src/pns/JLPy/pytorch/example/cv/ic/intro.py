@@ -21,25 +21,38 @@ class ImageDataset(Dataset):
 
   .. card::
   
-     **PyTorch's** ``**Dataset**``
+     PyTorch's Dataset
      ^^^
+     
      Abstract Class:
+     
         Declare an abstract method ``__getitem__()``.
+        
      Container Class:
+     
         As a container, it must define the ``__getitem__()`` method to
         allow container objects to be subscribed to. A subclass that implements
         ``__getitem__()`` will be a container class.
+        
      Sequence Container:
+     
         Like sequence containers ``list`` and ``tuple``, it is subscribed
         to using an ``int`` or a slice.
+        
      Implement ``__getitem__()``:
+     
         When a sequence container implements this method, it will use an ``int``
         as an index to get an item from the container.
+        
      Define ``__getitems__()``: Optional
+     
         When a sequence container implements this method, it will use a slice
         to get a range of items from the container.
+        
      Mapping Container:
-        When a subclass try to use a key to fetch the items, it 
+     
+        When a subclass try to use a key to fetch the items, it
+        
      .. warning::
      
         It is not a mapping container because it does not use a key to

@@ -45,9 +45,38 @@ DataLoader--iter-->Model
 1. Map-Style Dataset Subclass of [Dataset]{.wpr}
     
     * [\_\_init\_\_()]{.wpr}: Required
+        
+        * Load the entire data into the dataset when it is constructed.
+        * The entire dataset must be able to be loaded into memory and processed
+          by the CPU without exceeding the limits.
+        * It is not suitable for streaming data.
+    
     * [\_\_getitem\_\_()]{.wpr}: Required
+        
+        * Map-style fetching method using integer or string keys.
+        * If using string keys, a custom Sampler must be supplied.
+    
     * [\_\_len\_\_()]{.wpr}: Optional
+        
+        * To sample the data, the Sampler needs this method to get the size of
+          the dataset.
+        * A custom Sampler that iterates over the dataset without using
+          this method can only be used to fetch the data one by one and
+          wait for the next one if it is not loading already. This can be useful
+          for certain applications, such as streaming data. However, it is not
+          generally recommended for sampling, as it is inefficient and does not
+          allow you to use PyTorch's built-in sampling features.
+        * Using the IterableDataset class is the best way to deal with streaming
+          data
+        * This method is optional for Dataset subclasses, but it is required
+          for most Map-Style Datasets.
+    
     * [\_\_getitems\_\_()]{.wpr}: Optional
+        
+        * This method is optional. It can speed up data loading for
+          sampling and batching.
+        * A batch of samples can be fetched using a list of integer or
+          string keys.
 
 :::
 :::bls
@@ -55,7 +84,16 @@ DataLoader--iter-->Model
 2. [DataLoader]{.wpr}
     
     * [\_\_init\_\_()]{.wpr}: Constructor
+        
+        * Setup dataset, sampler, batching size and more.
+        * If there is no custom Sampler or built-in Sampler setup, the built-in
+          sampler will be used over the dataset in a sequential order, without
+          shuffling.
+    
     * [\_\_iter\_\_()]{.wpr}: Iterator
+        
+        * Iterate over the Sampler to load the data in batches.
+        * This is the feeding method for models.
 
 :::
 :::bls
@@ -63,15 +101,28 @@ DataLoader--iter-->Model
 3. Optional [Sampler]{.wpr} Subclass
     
     * [\_\_init\_\_()]{.wpr}: Optional
+        
+        * Setup dataset and get the size of the dataset.
+    
     * [\_\_iter_\_()]{.wpr}: Required
+        
+        * Custom sampling strategy and fetch the samples from dataset.
+        * Custom multi-workers processing is used here to speed up data loading.
+          However, the overall memory usage is the number of workers multiplied
+          by the size of the parent process. Therefore, be careful of memory
+          usage when loading a lot of data into the dataset.
+    
+    * If a built-in sampler has been set up and passed to Dataloader,
+      Dataloader iterates sampler's \_\_iter\_\_() method to fetch the samples.
 
 :::
 ::::
+
 ---
 
 ## Iterable-style Dataset Pipeline
 
-:::blc
+::::blc
 :::{mermaid}
 :caption: Iterable-style Dataset Pipeline
 :align: center
@@ -80,55 +131,44 @@ Source--iter-->IterableDataset
 subgraph IterableDataset
 Loading
 end
-IterableDataset--multiprocess-->DataLoader
+IterableDataset--iter-->DataLoader
 subgraph DataLoader
 direction TB
 Batching-->Feeding
 end
 DataLoader--iter-->Model
 :::
+:::bls
 
----
-
-## Datasets
-
-PyTorch supports two different types of datasets, map-style datasets and
-iterable-style datasets.
-:::{card}
-[Dataset]{.wpr}: An abstract class
-^^^
-
-* [\_\_getitem\_\_()]{.wpr}: Required
+1. Iterable-style Dataset Subclass of [IterableDataset]{.wpr}
     
-    * Subclass must implement this method.
-    * A map-style fetching method. It uses an integer index or string key to
-      subscript one item from the dataset.
-    * DataLoader only supports integer index. If the dataset is the key based
-      container, a custom Sampler must be supplied.
+    * [\_\_init\_\_()]{.wpr}: Optional
+    * [\_\_iter\_\_()]{.wpr}: Required
+        
+        * For data that cannot be loaded into memory all at once, such as
+          streaming data, large data, or CPU-intensive data, use this method
+          to manage the data loading process.
+        * Custom multi-workers processing is used here to speed up data loading.
+        * Build your own strategy to split the original data into parts, control
+          the data loading speed, and adapt the batching to the feeding process
+          speed.
+        * Develop your own sampling strategy to load the different parts of the
+          data from multiple workers.
 
-* [\_\_len\_\_()]{.wpr}: Required
+:::
+:::bls
+
+2. [DataLoader]{.wpr}
     
-    * Subclass must implement this method.
-    * Sampler or DataLoader will use it to get the size of the dataset.
-
-* [\_\_getitems\_\_()]{.wpr}: Optional
+    * [\_\_init\_\_()]{.wpr}: Constructor
+        
+        * Setup dataset, batching size , num_workers and more.
     
-    * This is a optional method.
-    * It uses for speedup batched samples loading. This method accepts list of
-      indices of samples of batch and returns list of samples.
-    * A custom sampler must be supplied to fetch the key-based list of samplers.
+    * [\_\_iter\_\_()]{.wpr}: Iterator
+        
+        * Iterate over the IterableDataset to load the data in batches from
+          all workers.
+        * This is the feeding method for models.
 
 :::
-:::{card}
-[IterableDataset]{.wpr} : An abstract class
-^^^
-
-*
-
-:::
-:::bgb
-This is a test.
-:::
-:::fgg
-This is a block.
-:::
+::::

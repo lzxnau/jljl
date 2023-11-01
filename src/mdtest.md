@@ -1,8 +1,3 @@
 # MDTest
 
-:::blc
-:::{mermaid}
-graph LR
-A --> B
-:::
-
+defines the syntax lexer, e.g. `a = "b"`{l=python}

@@ -35,9 +35,11 @@ html_css_files = [
   'css/custom.css',
 ]
 
+myst_number_code_blocks = ["python"]
 myst_fence_as_directive = ["mermaid"]
 myst_enable_extensions = [
   "amsmath",
+  'attrs_block',
   "attrs_inline",
   "colon_fence",
   "deflist",

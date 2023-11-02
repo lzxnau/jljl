@@ -1,7 +1,8 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath('../src/pns'))
+nps = os.path.abspath('../src/pns')
+sys.path.insert(0, nps)
 
 # -- Project information -----------------------------------------------------
 project = 'JLDP'
@@ -66,4 +67,12 @@ intersphinx_mapping = {
   'pylang': ('https://docs.python.org/3/', None),
   'pytorch': ('https://pytorch.org/docs/stable/', None),
   'sphinx': ('https://www.sphinx-doc.org/en/master/', None),
+}
+
+myst_substitutions = {
+  'inc': ':::{{literalinclude}} /pns/JLPy{}\n'
+         + ':language: python\n'
+         + ':lineno-match:\n'
+         + '{}\n'
+         + ':::\n',
 }

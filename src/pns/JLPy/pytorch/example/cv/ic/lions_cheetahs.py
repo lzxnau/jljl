@@ -1,5 +1,5 @@
 """
-Lion and cheetah image classification example.
+Lions and cheetahs image classification example.
 
 Classify lion or cheetah images using a pre-trained Deep Learning model with
 the PyTorch framework.
@@ -8,27 +8,33 @@ the PyTorch framework.
 :Version: 2023.11.01.01
 
 """
-
+# start import
 import os
 from os.path import (
   join,
   isfile
 )
 import pandas as pd
+import seaborn as sns
+
+
+# end import
 
 
 class cfg:
   """
   Static configurations for the project.
   
-  :Cls root_path: The directory of the images on the hard drive.
+  :Cls prj_path: Project's working directory on the hard drive.
+  :Cls img_path: The directory of the images under the project folder.
   :Cls sub_dirs: A list of the image directories for lions and cheetahs.
-  :Cls labels: 0 refers to lion and 1 refers to cheetah.
+  :Cls labels: 0 refers to lions and 1 refers to cheetahs.
   
   .. card::
   """
   
-  root_path = 'res/images'  # this is a test.
+  prj_path = os.environ.get("JLDP_Path")
+  img_path = 'res/images'
   sub_dirs = ('Lions', 'Cheetahs')
   labels = (0, 1)
 
@@ -46,7 +52,7 @@ class Explore:
   .. card::
   """
   
-  def __init__(self):
+  def __init__(self) -> None:
     """
     Explore class constractor.
     
@@ -54,14 +60,24 @@ class Explore:
     """
     
     data = []
-    sub_paths = [join(cfg.root_path, x) for x in cfg.sub_dirs]
+    sub_paths = [join(cfg.prj_path, cfg.img_path, x) for x in cfg.sub_dirs]
     for s, l in zip(sub_paths, cfg.labels):
       for f in os.listdir(s):
         if '.jpg' in f and isfile(d := join(s, f)):
           data.append((d, l))
     self.df = pd.DataFrame(data, columns=['file_path', 'label'])
+  
+  def countBar(self, col: str) -> None:
+    """
+    Show count plot from the column for classification.
+    
+    :param col: The column name from dataframe for classification.
+    :type col: str
+    """
+    
+    sns.countplot(self.df, x=col)
 
 
 if __name__ == '__main__':
   ex = Explore()
-  print(ex.df.head())
+  ex.countBar('label')

@@ -33,7 +33,7 @@ class cfg:
   .. card::
   """
   
-  prj_path = os.environ.get("JLDP_Path")
+  prj_path = os.environ.get("JLDPPATH")
   img_path = 'res/images'
   sub_dirs = ('Lions', 'Cheetahs')
   labels = (0, 1)
@@ -58,7 +58,6 @@ class Explore:
     
     Load the data into an instance of this class.
     """
-    
     data = []
     sub_paths = [join(cfg.prj_path, cfg.img_path, x) for x in cfg.sub_dirs]
     for s, l in zip(sub_paths, cfg.labels):
@@ -67,17 +66,13 @@ class Explore:
           data.append((d, l))
     self.df = pd.DataFrame(data, columns=['file_path', 'label'])
   
-  def countBar(self, col: str) -> None:
+  def countBar(self) -> None:
     """
-    Show count plot from the column for classification.
-    
-    :param col: The column name from dataframe for classification.
-    :type col: str
+    Show count plot using 'label' column.
     """
-    
-    sns.countplot(self.df, x=col)
+    sns.countplot(self.df, x='label')
 
 
 if __name__ == '__main__':
   ex = Explore()
-  ex.countBar('label')
+  ex.countBar()

@@ -15,6 +15,7 @@ version = '2023.10.25.2'
 extensions = [
   'sphinx.ext.autodoc',
   'sphinx.ext.autosummary',
+  # 'sphinx.ext.doctest',
   # 'sphinx.ext.napoleon',
   'sphinx.ext.intersphinx',
   'myst_parser',
@@ -75,12 +76,13 @@ myst_substitutions = {
          + ':lineno-match:\n'
          + '{}\n'
          + ':::\n',
-  'ddc': '::::{{dropdown}} {}\n'
-         + ':class-container: ddc\n'
-         + ':class-title: ddt\n'
-         + ':open:\n'
-         + '{}\n'
-         + '::::\n',
+  'ddco': '::::{{dropdown}} {}\n'
+          + ':open:\n'
+          + ':class-container: ddc\n'
+          + ':class-title: ddt\n'
+          + ':class-body: ddb\n\n'
+          + '{}\n'
+          + '::::\n',
   'ddin': '::::{{dropdown}} {}\n'
           # + ':open:\n'
           + ':class-container: ddc\n'

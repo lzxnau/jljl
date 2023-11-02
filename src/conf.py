@@ -37,7 +37,7 @@ html_css_files = [
 ]
 
 myst_number_code_blocks = ["python"]
-myst_fence_as_directive = ["mermaid"]
+# myst_fence_as_directive = ["mermaid"]
 myst_enable_extensions = [
   "amsmath",
   'attrs_block',
@@ -75,4 +75,21 @@ myst_substitutions = {
          + ':lineno-match:\n'
          + '{}\n'
          + ':::\n',
+  'ddc': '::::{{dropdown}} {}\n'
+         + ':class-container: ddc\n'
+         + ':class-title: ddt\n'
+         + ':open:\n'
+         + '{}\n'
+         + '::::\n',
+  'ddin': '::::{{dropdown}} {}\n'
+          # + ':open:\n'
+          + ':class-container: ddc\n'
+          + ':class-title: ddt\n'
+          + ':class-body: ddb\n\n'
+          + ':::{{literalinclude}} /pns/JLPy{}\n'
+          + ':language: python\n'
+          + ':lineno-match:\n'
+          + '{}\n'
+          + ':::\n'
+          + '::::\n',
 }

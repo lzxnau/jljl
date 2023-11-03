@@ -15,7 +15,9 @@ from os.path import (
   isfile
 )
 import pandas as pd
+import matplotlib.pyplot as plt
 import seaborn as sns
+import cv2 as cv
 
 
 # end import
@@ -72,8 +74,34 @@ class Explore:
     """
     print(self.df.groupby(['label']).count())
     sns.countplot(self.df, x='label')
+  
+  def showFigures(self) -> None:
+    """
+    Show figures plot for jpg files.
+    """
+    fig, ax = plt.subplots(2, 3, figsize=(10, 6))
+    
+    for i in range(2):
+      sub = self.df['file_path'].where(self.df['label'] == i)
+      for j in range(3):
+        
+        label = self.df.columns[i]
+        file_path = sub[i]
+        
+        image = cv.imread(file_path)
+        image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
+        image = cv.resize(image, (256, 256))
+        
+        ax[i, j].imshow(image)
+        ax[i, j].set_title(
+          f"Label: {label} ({'Lion' if label == 0 else 'Cheetah'})")
+        ax[i, j].axis('off')
+      
+    plt.tight_layout()
+    plt.show()
 
 
 if __name__ == '__main__':
   ex = Explore()
   ex.countBar()
+  ex.showFigures()

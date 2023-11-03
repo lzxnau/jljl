@@ -20,3 +20,12 @@ The first step is to become familiar with the data.
 {{ ddin.format('1. Import modules and classes',plc,cim) }}
 {{ ddin.format('2. Add configurations into cfg class',plc,ccf) }}
 {{ ddin.format('3. Add explore methods into Explore class',plc,cex) }}
+Show the [results](explore.ipynb).
+
+---
+
+Jupyter Output Reference:
+
+:::{toctree}
+explore
+:::

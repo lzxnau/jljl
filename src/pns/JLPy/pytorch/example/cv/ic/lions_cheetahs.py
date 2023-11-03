@@ -70,6 +70,7 @@ class Explore:
     """
     Show count plot using 'label' column.
     """
+    print(self.df.groupby(['label']).count())
     sns.countplot(self.df, x='label')
 
 

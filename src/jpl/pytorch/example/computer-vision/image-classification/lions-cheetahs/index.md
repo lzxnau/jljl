@@ -7,6 +7,8 @@ myst:
       :end-before: end import
     ccf: ':pyobject: cfg'
     cex: ':pyobject: Explore'
+    exp1: '1. Import modules and classes
+      {bdg-link-info}`Jupyter Output <explore.ipynb>`'
 ---
 
 # CV-IC Lions and Cheetahs
@@ -20,7 +22,15 @@ The first step is to become familiar with the data.
 {{ ddin.format('1. Import modules and classes',plc,cim) }}
 {{ ddin.format('2. Add configurations into cfg class',plc,ccf) }}
 {{ ddin.format('3. Add explore methods into Explore class',plc,cex) }}
-Show the [results](explore.ipynb).
+{bdg-link-info}`Jupyter Output <explore.ipynb>`
+{bdg-link-info}`JLDP API <explore.ipynb>`
+{bdg-link-info}`Source Code <explore.ipynb>`
+
+---
+
+## Data Loading Pipeline
+
+Test
 
 ---
 

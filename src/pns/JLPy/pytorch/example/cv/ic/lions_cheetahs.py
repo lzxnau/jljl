@@ -79,14 +79,17 @@ class Explore:
     """
     Show figures plot for jpg files.
     """
+    dfg = self.df.groupby('label')
+    dfs = dfg.apply(lambda x: x.sample(3, replace=False))
+    dfs = dfs.reset_index(drop=True)
+    dfs = dfs.sample(frac=1).reset_index(drop=True)
+    
     fig, ax = plt.subplots(2, 3, figsize=(10, 6))
     
     for i in range(2):
-      sub = self.df['file_path'].where(self.df['label'] == i)
       for j in range(3):
-        
-        label = self.df.columns[i]
-        file_path = sub[i]
+        label = dfs.label[i * 3 + j]
+        file_path = dfs.file_path[i * 3 + j]
         
         image = cv.imread(file_path)
         image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
@@ -96,7 +99,7 @@ class Explore:
         ax[i, j].set_title(
           f"Label: {label} ({'Lion' if label == 0 else 'Cheetah'})")
         ax[i, j].axis('off')
-      
+    
     plt.tight_layout()
     plt.show()
 

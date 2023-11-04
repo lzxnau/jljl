@@ -85,6 +85,7 @@ myst_substitutions = {
           + '::::\n',
   'ddin': '::::{{dropdown}} {}\n'
           # + ':open:\n'
+          + ':icon: code\n'
           + ':class-container: ddc\n'
           + ':class-title: ddt\n'
           + ':class-body: ddb\n\n'

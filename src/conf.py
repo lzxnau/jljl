@@ -8,8 +8,8 @@ sys.path.insert(0, nps)
 project = 'JLDP'
 copyright = '2023, JLDP'
 author = 'JLDP'
-release = '2023.10.25'
-version = '2023.10.25.2'
+release = '2023.11.04'
+version = '2023.11.04.3'
 
 # -- General configuration ---------------------------------------------------
 extensions = [

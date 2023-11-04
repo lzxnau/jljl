@@ -5,7 +5,7 @@ Classify lion or cheetah images using a pre-trained Deep Learning model with
 the PyTorch framework.
 
 :Authors: JLPy
-:Version: 2023.11.01.01
+:Version: 2023.11.04.02
 
 """
 # start import
@@ -27,16 +27,20 @@ class cfg:
   """
   Static configurations for the project.
   
-  :Cls prj_path: Project's working directory on the hard drive.
   :Cls img_path: The directory of the images under the project folder.
   :Cls sub_dirs: A list of the image directories for lions and cheetahs.
   :Cls labels: 0 refers to lions and 1 refers to cheetahs.
   
+  .. attention::
+     | The Python working directory will be the same as the Jupyter working
+       directory.
+     | img_path will use the relative path to locate the source images.
+     | After this setup, the outputs from both Python and Jupyter will work
+       properly.
+     
   .. card::
   """
-  
-  prj_path = os.environ.get("JLDPPATH")
-  img_path = 'res/images'
+  img_path = '../../res/images'
   sub_dirs = ('Lions', 'Cheetahs')
   labels = (0, 1)
 
@@ -48,9 +52,9 @@ class Explore:
   This is the first step to explore the source data and to become familiar with
   the data.
   
-  :Ins df: A pandas dataframe to store all file records with two columns\
+  :Ins df: A pandas dataframe to store all images with two columns\
            file_path and label.
-            
+     
   .. card::
   """
   
@@ -58,34 +62,48 @@ class Explore:
     """
     Explore class constractor.
     
-    Load the data into an instance of this class.
+    Load the data into a dataframe with two columns file_path and label.
     """
     data = []
-    sub_paths = [join(cfg.prj_path, cfg.img_path, x) for x in cfg.sub_dirs]
+    sub_paths = [join(cfg.img_path, x) for x in cfg.sub_dirs]
     for s, l in zip(sub_paths, cfg.labels):
       for f in os.listdir(s):
-        if '.jpg' in f and isfile(d := join(s, f)):
-          data.append((d, l))
+        if '.jpg' in f and isfile(p := join(s, f)):
+          data.append((p, l))
     self.df = pd.DataFrame(data, columns=['file_path', 'label'])
   
-  def countBar(self) -> None:
+  def cntImgs(self) -> None:
     """
-    Show count plot using 'label' column.
+    Count images by the category of the labels.
     """
     print(self.df.groupby(['label']).count())
     sns.countplot(self.df, x='label')
   
-  def showFigures(self) -> None:
+  def sampImgs(self) -> None:
     """
-    Show figures plot for jpg files.
+    Show sample images from the category of each label.
+    
+    1. Grouping the dataframe by the column 'label'.
+    2. Sampling 3 images from each group.
+    3. Shuffling the order of the new dataframe.
+    4. Creating a plot with 3x2 figures.
+    5. Loading the sample images.
+    6. Plotting the figures.
     """
+    # Step 1
     dfg = self.df.groupby('label')
+    
+    # Step 2
     dfs = dfg.apply(lambda x: x.sample(3, replace=False))
     dfs = dfs.reset_index(drop=True)
+    
+    # Step 3
     dfs = dfs.sample(frac=1).reset_index(drop=True)
     
+    # Step 4
     fig, ax = plt.subplots(2, 3, figsize=(10, 6))
     
+    # Step 5
     for i in range(2):
       for j in range(3):
         label = dfs.label[i * 3 + j]
@@ -100,11 +118,12 @@ class Explore:
           f"Label: {label} ({'Lion' if label == 0 else 'Cheetah'})")
         ax[i, j].axis('off')
     
+    # Step 6
     plt.tight_layout()
     plt.show()
 
 
 if __name__ == '__main__':
   ex = Explore()
-  ex.countBar()
-  ex.showFigures()
+  ex.cntImgs()
+  ex.sampImgs()

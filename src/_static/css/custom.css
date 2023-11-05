@@ -35,15 +35,15 @@
 }
 
 .pcls {
-    color: aquamarine;
-    background-color: dimgray;
+    color: #73D0FF;
+    background-color: #000504;
     border-radius: 5px;
     padding: 1px 2px;
 }
 
 .pfxn {
-    color: #fbff0a;
-    background-color: dimgray;
+    color: #FFD173;
+    background-color: #000504;
     border-radius: 5px;
     padding: 1px 2px;
 }

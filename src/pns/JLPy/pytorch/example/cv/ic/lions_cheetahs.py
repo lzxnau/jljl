@@ -23,6 +23,7 @@ import cv2 as cv2
 from torch import tensor
 from torch.utils.data import (
   Dataset,
+  DataLoader,
 )
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
@@ -40,6 +41,7 @@ class cfg:
   :Cls labels: 0 refers to lions and 1 refers to cheetahs.
   :Cls img_size: The standard image size for feeding the model.
   :Cls img_df: A pandas DataFrame to store data information.
+  :Cls batch_size: The size of a batch samplers.
   
   .. attention::
      | The Python working directory will be the same as the Jupyter working
@@ -55,6 +57,7 @@ class cfg:
   labels = (0, 1)
   img_size = 256
   img_df = None
+  batch_size = 8
   
   @staticmethod
   def loadDF() -> pd.DataFrame:
@@ -90,19 +93,13 @@ class Explore:
   .. card::
   """
   
-  def __init__(self) -> None:
-    """
-    Explore class constractor.
-    """
-    cfg.loadDF()
-  
   @staticmethod
   def cntImgs() -> None:
     """
     Count images by the category of the labels.
     """
-    print(cfg.img_df.groupby(['label']).count())
-    sns.countplot(cfg.img_df, x='label')
+    print(cfg.loadDF().groupby(['label']).count())
+    sns.countplot(cfg.loadDF(), x='label')
   
   @staticmethod
   def sampImgs() -> None:
@@ -117,7 +114,7 @@ class Explore:
     6. Plotting the figures.
     """
     # Step 1
-    dfg = cfg.img_df.groupby('label')
+    dfg = cfg.loadDF().groupby('label')
     
     # Step 2
     dfs = dfg.apply(lambda x: x.sample(3, replace=False))
@@ -186,18 +183,33 @@ class ImgsDataset(Dataset):
     image = cv2.imread(self.file_paths[idx])
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     image = self.transform(image=image)['image']
-    image = image / 255
+    # image = image / 255
     
     return image, label
   
   def sampDemo(self) -> None:
     """
     Print five demo samples from the ImgsDataset.
+    
+    Optional method for testing purposes.
     """
     s = math.floor(len(self.labels) / 5)
     for i in range(5):
       j = rand.randint(i * s, i * s + s)
       print(self.__getitem__(j))
+  
+  def batchDemo(self) -> None:
+    """
+    Print demo batch info from the Dataloader.
+    
+    Optional method for testing purposes.
+    """
+    dl = DataLoader(self, batch_size=cfg.batch_size, shuffle=True,
+      num_workers=0)
+    for batch_img, batch_label in dl:
+      print(batch_img.shape)
+      print(batch_label.shape)
+      break
 
 
 if __name__ == '__main__':

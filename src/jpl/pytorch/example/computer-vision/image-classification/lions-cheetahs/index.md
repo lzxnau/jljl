@@ -35,6 +35,13 @@ Step 2: Customize a subclass of [Dataset]{.pcls} to load the data and use two
 
 ---
 
+## Prepare the model
+
+Step 3: Prepare the model
+
+
+---
+
 Jupyter Output Reference:
 
 :::{toctree}

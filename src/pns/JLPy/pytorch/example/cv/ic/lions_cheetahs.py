@@ -176,8 +176,8 @@ class ImgsDataset(Dataset):
     Get one element of the dataset.
     
     :param idx: Index of the element in the dataset.
-    :return: One element of the dataset with a format [tensor, label].
-    :rtype: list
+    :return: One element of the dataset with a format (tensor, label).
+    :rtype: tuple[tensor, int]
     """
     label = self.labels[idx]
     image = cv2.imread(self.file_paths[idx])

@@ -24,6 +24,7 @@ extensions = [
   'sphinx_togglebutton',
   'sphinx_gallery.load_style',
   'sphinxcontrib.mermaid',
+  # 'sphinx_tippy',
   'nbsphinx',
 ]
 

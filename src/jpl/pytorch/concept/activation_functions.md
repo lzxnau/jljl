@@ -33,3 +33,14 @@ Sigmoid Function
   :::{math}
   \operatorname{sigmoid}(x) = \frac{1}{1 + \exp(-x)}
   :::
+
+Tanh Function
+: Like the sigmoid function, the tanh (hyperbolic tangent) function also
+  squashes its inputs, transforming them into elements on the interval
+  between -1 and 1. Although the shape of the function is similar to that
+  of the sigmoid function, the tanh function exhibits point symmetry about
+  the origin of the coordinate system.
+
+  :::{math}
+  \operatorname{tanh}(x) = \frac{1 - \exp(-2x)}{1 + \exp(-2x)}
+  :::
